@@ -11,12 +11,10 @@
 // entirely and just use numbers.
 #define _QWERTY 0
 #define _NUMPAD 1
-#define _SYM 1
+#define _SYM 2
 
 enum preonic_keycodes {
   QWERTY = SAFE_RANGE,
-  NUMPAD,
-  SYM,
   BACKLIT
 };
 
