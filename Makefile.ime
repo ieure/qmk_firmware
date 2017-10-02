@@ -1,0 +1,9 @@
+# -*- mode: makefile -*-
+
+all:
+    $(MAKE) -f Makefile ergodox_ez-ime-all
+    $(MAKE) -f Makefile ergodox_infinity-ime-all
+
+tools:
+	sudo apt install libnewlib-arm-none-eabi avr-libc binutils-avr \
+                     dfu-util dfu-programmer gcc-avr gcc-arm-none-eabi
