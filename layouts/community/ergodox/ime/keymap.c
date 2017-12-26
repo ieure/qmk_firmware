@@ -3,6 +3,8 @@
 #include "action_layer.h"
 #include "version.h"
 
+#define PERMISSIVE_HOLD
+
 enum {
     BASE = 0,                   // Default layer
     NUMPAD = 1,                 // Numpad etc
