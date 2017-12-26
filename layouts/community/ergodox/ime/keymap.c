@@ -4,6 +4,8 @@
 #include "version.h"
 
 #define PERMISSIVE_HOLD
+#undef TAPPING_TERM
+#define TAPPING_TERM 150
 
 enum {
     BASE = 0,                   // Default layer
