@@ -5,7 +5,7 @@ LAYOUT = layouts/community/ergodox/ime/keymap.c
 all: ergodox_infinity_ime.hex ergodox_ez_ime.hex
 
 ergodox_infinity_ime.hex: $(LAYOUT)
-	$(MAKE) -f Makefile ergodox_infinity-ime-dfu
+	$(MAKE) -f Makefile ergodox_infinity-ime-all
 
 ergodox_ez_ime.hex: $(LAYOUT)
 	$(MAKE) -f Makefile ergodox_ez-ime-all
