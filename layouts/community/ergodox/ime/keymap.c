@@ -7,6 +7,8 @@
 #undef TAPPING_TERM
 #define TAPPING_TERM 150
 
+#define SALT(kc) (kc | QK_LALT | QK_LSFT)
+
 enum {
     BASE = 0,                   // Default layer
     NUMPAD = 1,                 // Numpad etc
@@ -136,8 +138,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [SYMS] = KEYMAP(
            // left hand
            KC_TRNS, KC_TRNS,           KC_TRNS,    KC_TRNS,       KC_TRNS,       KC_TRNS, KC_TRNS,
-           KC_TRNS, KC_TRNS,           KC_TRNS,    SCMD(KC_QUOT), LGUI(KC_QUOT), KC_TRNS, KC_TRNS,
-           KC_TRNS, LGUI(KC_LBRACKET), SCMD(KC_9), KC_TRNS,       KC_TRNS,       KC_TRNS,
+           KC_TRNS, KC_TRNS,           KC_TRNS,    SALT(KC_QUOT), LALT(KC_QUOT), KC_TRNS, KC_TRNS,
+           KC_TRNS, LALT(KC_LBRACKET), SALT(KC_9), KC_TRNS,       KC_TRNS,       KC_TRNS,
            KC_TRNS, KC_TRNS,           KC_TRNS,    KC_TRNS,       KC_TRNS,       KC_TRNS, KC_TRNS,
            KC_TRNS, KC_TRNS,           KC_TRNS,    KC_TRNS,       KC_TRNS,
 
