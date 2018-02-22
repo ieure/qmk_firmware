@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0x6060
-#define MANUFACTURER    Ortholinear Keyboards
+#define MANUFACTURER    OLKB
 #define PRODUCT         The Planck Keyboard
 #define DESCRIPTION     A compact ortholinear keyboard
 
@@ -35,6 +35,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROW_PINS { D0, D5, B5, B6 }
 #define MATRIX_COL_PINS { F1, F0, B0, C7, F4, F5, F6, F7, D4, D6, B4, D7 }
 #define UNUSED_PINS
+
+#define AUDIO_VOICES
+#define C6_AUDIO
 
 #define BACKLIGHT_PIN B7
 
@@ -78,11 +81,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_MACRO
 //#define NO_ACTION_FUNCTION
 
-#ifdef SUBPROJECT_rev3
-    #include "rev3/config.h"
-#endif
-#ifdef SUBPROJECT_rev4
-    #include "rev4/config.h"
-#endif
+#include QMK_SUBPROJECT_CONFIG_H
 
 #endif

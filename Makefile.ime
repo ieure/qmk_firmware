@@ -1,0 +1,22 @@
+# -*- mode: makefile -*-
+
+LAYOUT = layouts/community/ergodox/ime/keymap.c
+
+all: ergodox_infinity_ime.hex ergodox_ez_ime.hex
+
+ergodox_infinity_ime.hex: $(LAYOUT)
+	$(MAKE) -f Makefile ergodox_infinity-ime-all
+
+ergodox_ez_ime.hex: $(LAYOUT)
+	$(MAKE) -f Makefile ergodox_ez-ime-all
+
+flash-ergodox: ergodox_ez_ime.hex 
+	teensy_loader_cli --mcu=TEENSY2 -v -w $<
+
+clean:
+	rm -f *.hex
+	$(MAKE) -f Makefile ergodox_ez-ime-clean ergodox_infinity-ime-clean
+
+tools:
+	sudo apt install libnewlib-arm-none-eabi avr-libc binutils-avr \
+                     dfu-util dfu-programmer gcc-avr gcc-arm-none-eabi

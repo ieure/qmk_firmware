@@ -29,9 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
 
-/* define if matrix has ghost */
-//#define MATRIX_HAS_GHOST
-
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCING_DELAY 5
 
@@ -69,6 +66,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 #ifdef SUBPROJECT_rev2
     #include "rev2/config.h"
+#endif
+#ifdef SUBPROJECT_rev3
+    #include "rev3/config.h"
 #endif
 
 #endif

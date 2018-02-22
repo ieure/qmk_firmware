@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CONFIG_H
-#define CONFIG_H
+#ifndef ERGODOX_EZ_CONFIG_H
+#define ERGODOX_EZ_CONFIG_H
 
 #include "config_common.h"
 
@@ -33,21 +33,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS 14
 #define MATRIX_COLS 6
 
-#define MOUSEKEY_DELAY          100
 #define MOUSEKEY_INTERVAL       20
-#define MOUSEKEY_MAX_SPEED      3
-#define MOUSEKEY_TIME_TO_MAX    10
+#define MOUSEKEY_DELAY          0
+#define MOUSEKEY_TIME_TO_MAX    60
+#define MOUSEKEY_MAX_SPEED      7
+#define MOUSEKEY_WHEEL_DELAY 0
 
 #define TAPPING_TOGGLE  1
 
 /* define if matrix has ghost */
 //#define MATRIX_HAS_GHOST
 
-/* number of backlight levels */
-#define BACKLIGHT_LEVELS 3
-
-/* Set 0 if debouncing isn't needed */
-#define DEBOUNCE    5
 #define TAPPING_TERM    200
 #define IGNORE_MOD_TAP_INTERRUPT // this makes it possible to do rolling combos (zx) with keys that convert to other keys on hold (z becomes ctrl when you hold it, and when this option isn't enabled, z rapidly followed by x actually sends Ctrl-x. That's bad.)
 
@@ -61,6 +57,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     keyboard_report->mods == (MOD_BIT(KC_LCTL) | MOD_BIT(KC_RCTL)) || \
     keyboard_report->mods == (MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT)) \
 )
+
+/* number of backlight levels */
+#define BACKLIGHT_LEVELS 3
+
+#define LED_BRIGHTNESS_LO       15
+#define LED_BRIGHTNESS_HI       255
+
+/* ws2812 RGB LED */
+#define RGB_DI_PIN D7
+#define RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 15     // Number of LEDs
+#define RGBLIGHT_HUE_STEP 12
+#define RGBLIGHT_SAT_STEP 255
+#define RGBLIGHT_VAL_STEP 12
+
+/* fix space cadet rollover issue */
+#define DISABLE_SPACE_CADET_ROLLOVER
+
+// #define RGB_MIDI
+#define RGBW_BB_TWI
+
+#define RGBW 1
+
+/* Set 0 if debouncing isn't needed */
+#define DEBOUNCE    15
+
+#define PREVENT_STUCK_MODIFIERS
+
+#define USB_MAX_POWER_CONSUMPTION 500
 
 /*
  * Feature disable options
