@@ -15,8 +15,14 @@ all: .build/ergodox_infinity_ime-right.hex .build/ergodox_infinity_ime-left.hex 
 .build/ergodox_ez_ime.hex: $(LAYOUT)
 	$(MAKE) -f Makefile ergodox_ez:ime:all
 
-flash-ergodox: ergodox_ez_ime.hex 
+flash-ergodox: .build/ergodox_ez_ime.hex
 	teensy_loader_cli --mcu=TEENSY2 -v -w $<
+
+flash-iced-left: .build/ergodox_infinity_ime-left.hex
+	dfu-util -D $<
+
+flash-iced-right: .build/ergodox_infinity_ime-right.hex
+	dfu-util -D $<
 
 clean:
 	rm -f *.hex
