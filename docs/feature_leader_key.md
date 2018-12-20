@@ -5,7 +5,7 @@ If you've ever used Vim, you know what a Leader key is. If not, you're about to 
 That's what `KC_LEAD` does. Here's an example:
 
 1. Pick a key on your keyboard you want to use as the Leader key. Assign it the keycode `KC_LEAD`. This key would be dedicated just for this -- it's a single action key, can't be used for anything else.
-2. Include the line `#define LEADER_TIMEOUT 300` somewhere in your keymap.c file, probably near the top. The 300 there is 300ms -- that's how long you have for the sequence of keys following the leader. You can tweak this value for comfort, of course.
+2. Include the line `#define LEADER_TIMEOUT 300` in your config.h. The 300 there is 300ms -- that's how long you have for the sequence of keys following the leader. You can tweak this value for comfort, of course.
 3. Within your `matrix_scan_user` function, do something like this:
 
 ```
@@ -17,14 +17,16 @@ void matrix_scan_user(void) {
     leader_end();
 
     SEQ_ONE_KEY(KC_F) {
-      register_code(KC_S);
-      unregister_code(KC_S);
+      // Anything you can do in a macro.
+      SEND_STRING("QMK is awesome.");
+    }
+    SEQ_TWO_KEYS(KC_D, KC_D) {
+      SEND_STRING(SS_LCTRL("a")SS_LCTRL("c"));
+    }
+    SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
+      SEND_STRING("https://start.duckduckgo.com"SS_TAP(X_ENTER));
     }
     SEQ_TWO_KEYS(KC_A, KC_S) {
-      register_code(KC_H);
-      unregister_code(KC_H);
-    }
-    SEQ_THREE_KEYS(KC_A, KC_S, KC_D) {
       register_code(KC_LGUI);
       register_code(KC_S);
       unregister_code(KC_S);
@@ -34,4 +36,37 @@ void matrix_scan_user(void) {
 }
 ```
 
-As you can see, you have three function. you can use - `SEQ_ONE_KEY` for single-key sequences (Leader followed by just one key), and `SEQ_TWO_KEYS` and `SEQ_THREE_KEYS` for longer sequences. Each of these accepts one or more keycodes as arguments. This is an important point: You can use keycodes from **any layer on your keyboard**. That layer would need to be active for the leader macro to fire, obviously.
+As you can see, you have a few function. You can use `SEQ_ONE_KEY` for single-key sequences (Leader followed by just one key), and `SEQ_TWO_KEYS`, `SEQ_THREE_KEYS` up to `SEQ_FIVE_KEYS` for longer sequences.
+
+Each of these accepts one or more keycodes as arguments. This is an important point: You can use keycodes from **any layer on your keyboard**. That layer would need to be active for the leader macro to fire, obviously.
+
+## Adding Leader Key Support in the `rules.mk`
+
+To add support for Leader Key you simply need to add a single line to your keymap's `rules.mk`:
+
+```
+LEADER_ENABLE = yes
+```
+
+## Per Key Timing on Leader keys
+
+Rather than relying on an incredibly high timeout for long leader key strings or those of us without 200wpm typing skills, we can enable per key timing to ensure that each key pressed provides us with more time to finish our stroke. This is incredibly helpful with leader key emulation of tap dance (read: multiple taps of the same key like C, C, C).
+
+In order to enable this, place this in your `config.h`:
+```
+#define LEADER_PER_KEY_TIMING
+```
+
+After this, it's recommended that you lower your `LEADER_TIMEOUT` to something less that 300ms.
+
+```
+#define LEADER_TIMEOUT 250
+```
+
+Now, something like this won't seem impossible to do without a 1000MS leader key timeout:
+
+```
+SEQ_THREE_KEYS(KC_C, KC_C, KC_C) {
+  SEND_STRING("Per key timing is great!!!");
+}
+```
