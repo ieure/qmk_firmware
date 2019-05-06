@@ -12,7 +12,8 @@
 enum {
     BASE = 0,                   // Default layer
     NUMPAD = 1,                 // Numpad etc
-    SYMS = 2                    // Symbols
+    SYMS = 2,                   // Symbols
+    MOUSE = 3                   // Mouse
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -28,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------| LALT |           | RALT |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |  /   | RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | Lyr1 |      |      | SysRq| LGUI |                                       | Left | Down |  Up  | Rght | Lyr1 |
+ *   | Lyr1 |LMouse|      | SysRq| LGUI |                                       | Left | Down |  Up  | Rght | Lyr1 |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |  =   |      |       |   [  |   ]  |
@@ -157,5 +158,55 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            KC_TRNS, KC_TRNS,
            KC_TRNS,
            KC_TRNS, KC_TRNS, KC_TRNS
-                )
+                ),
+
+/*
+ * Keymap: Layer 3 -- Mouse
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      |      |  MU  |      |      |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |------|           |------| ML   |  MD  |  MR  |      |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |MAcl0 |MAcl1 |Macl2 |                                       |      |      |      |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |      |       | MB2  | MB1  | MB3  |
+ *                                 `--------------------'       `--------------------'
+ *
+ */
+
+
+
+[MOUSE] = KEYMAP(
+           // left hand
+           KC_NO, KC_NO, KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO,
+           KC_NO, KC_NO, KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO,
+           KC_NO, KC_NO, KC_NO,        KC_NO,        KC_NO,        KC_NO,
+           KC_NO, KC_NO, KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO,
+           KC_NO, KC_NO, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2,
+
+           KC_NO, KC_NO,
+           KC_NO,
+           KC_NO, KC_NO, KC_NO,
+
+           // right hand
+           KC_NO, KC_NO,      KC_NO,      KC_NO,       KC_NO, KC_NO, KC_NO,
+           KC_NO, KC_NO,      KC_MS_UP,   KC_NO,       KC_NO, KC_NO, KC_NO,
+                  KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, KC_NO, KC_NO, KC_NO,
+           KC_NO, KC_NO,      KC_NO,      KC_NO,       KC_NO, KC_NO, KC_NO,
+                              KC_NO,      KC_NO,       KC_NO, KC_NO, KC_NO,
+
+           KC_NO, KC_NO,
+           KC_NO,
+           KC_MS_BTN2, KC_MS_BTN1, KC_MS_BTN3
+                 )
 };
