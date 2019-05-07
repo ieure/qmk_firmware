@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      | LHYP |       | RHYP |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[BASE] = KEYMAP(
+[BASE] = LAYOUT_ergodox(
            // left hand
            KC_GRV,                  KC_1,     KC_2,    KC_3,    KC_4,   KC_5, KC_MPLY,
            KC_TAB,                  KC_Q,     KC_W,    KC_E,    KC_R,   KC_T, KC_LCTL,
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  *
  */
-[NUMPAD] = KEYMAP(
+[NUMPAD] = LAYOUT_ergodox(
            // left hand
            KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_TRNS,
            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -136,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  */
 
-[SYMS] = KEYMAP(
+[SYMS] = LAYOUT_ergodox(
            // left hand
            KC_TRNS, KC_TRNS,           KC_TRNS,    KC_TRNS,       KC_TRNS,       KC_TRNS, KC_TRNS,
            KC_TRNS, KC_TRNS,           KC_TRNS,    SALT(KC_QUOT), LALT(KC_QUOT), KC_TRNS, KC_TRNS,
@@ -186,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 
-[MOUSE] = KEYMAP(
+[MOUSE] = LAYOUT_ergodox(
            // left hand
            KC_NO, KC_NO, KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO,
            KC_NO, KC_NO, KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO,
